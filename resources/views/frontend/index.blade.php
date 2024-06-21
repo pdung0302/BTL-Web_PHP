@@ -86,21 +86,25 @@
                         <!-- Tab Nav -->
                         <ul class="nav nav-tabs filter-tope-group" id="myTab" role="tablist">
                             @php
-                            $categories=DB::table('categories')->where('status','active')->where('is_parent',1)->get();
-                            // dd($categories);
+                            $categories = DB::table('categories')
+                            ->where('status', 'active')
+                            ->where('is_parent', 1)
+                            ->whereIn('title', ['Thời trang nam', 'Thời trang nữ', 'Thời trang trẻ em'])
+                            ->get();
                             @endphp
+
                             @if($categories)
                             <button class="btn" style="background:black" data-filter="*">
                                 Gần đây
                             </button>
-                            @foreach($categories as $key=>$cat)
-
+                            @foreach($categories as $key => $cat)
                             <button class="btn" style="background:none;color:black;" data-filter=".{{$cat->id}}">
                                 {{$cat->title}}
                             </button>
                             @endforeach
                             @endif
                         </ul>
+
                         <!--/ End Tab Nav -->
                     </div>
                     <div class="tab-content isotope-grid" id="myTabContent">
