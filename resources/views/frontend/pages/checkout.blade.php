@@ -185,64 +185,50 @@
                                     $exchangeRate = 23000;
                                     $totalCartPriceUSD = Helper::totalCartPrice();
                                     $totalCartPriceVND = $totalCartPriceUSD * $exchangeRate;
-                                    @endphp
 
-                                    <li class="order_subtotal" data-price="{{ $totalCartPriceVND }}">Giá tiền
+                                    // Thêm 30,000 VND nếu tổng tiền dưới 100,000 VND
+                                    $shippingFeeVND = 0;
+                                    if ($totalCartPriceVND < 100000) { $shippingFeeVND=30000; }
+                                        $totalWithShippingVND=$totalCartPriceVND + $shippingFeeVND; @endphp <li
+                                        class="order_subtotal" data-price="{{ $totalCartPriceVND }}">Giá
+                                        tiền
                                         <span>{{ number_format($totalCartPriceVND, 0, ',', '.') }} VND</span>
-                                    </li>>
-                                    <li class="shipping">
-                                        Phí vận chuyển
-                                        @if(count(Helper::shipping())>0 && Helper::cartCount()>0)
-                                        @php
-                                        $exchange_rate = 23000; // Replace with the current exchange rate
-                                        @endphp
-                                        <select name="shipping" class="nice-select" required>
-                                            <option value="">Chọn địa chỉ của bạn</option>
-                                            @foreach(Helper::shipping() as $shipping)
-                                            @php
-                                            $price_vnd = $shipping->price * $exchange_rate;
-                                            @endphp
-                                            <option value="{{$shipping->id}}" class="shippingOption"
-                                                data-price="{{$price_vnd}}">
-                                                {{$shipping->type}}: {{number_format($price_vnd, 0, '.', ',')}} VND
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                        @else
-                                        <span>Free</span>
+                                        </li>
+
+                                        @if($shippingFeeVND > 0)
+                                        <li class="shipping_fee">Phí vận chuyển
+                                            <span>{{ number_format($shippingFeeVND, 0, ',', '.') }} VND</span>
+                                        </li>
                                         @endif
-                                    </li>
 
-                                    @if(session('coupon'))
-                                    @php
-                                    $usdValue = session('coupon')['value'];
-                                    $exchangeRate = 23000;
-                                    $vndValue = $usdValue * $exchangeRate;
-                                    @endphp
-                                    <li class="coupon_price" data-price="{{ $vndValue }}">Bạn tiết kiệm được
-                                        <span>{{ number_format($vndValue, 0, ',', '.') }} VND</span>
-                                    </li>
-                                    @endif
+                                        @if(session('coupon'))
+                                        @php
+                                        $usdValue = session('coupon')['value'];
+                                        $vndValue = $usdValue * $exchangeRate;
+                                        @endphp
+                                        <li class="coupon_price" data-price="{{ $vndValue }}">Bạn tiết kiệm được
+                                            <span>{{ number_format($vndValue, 0, ',', '.') }} VND</span>
+                                        </li>
+                                        @endif
 
-                                    @php
-                                    $total_amount_usd = Helper::totalCartPrice();
-                                    $exchangeRate = 23000; // Replace with the current exchange rate
+                                        @php
+                                        $total_amount_usd = Helper::totalCartPrice();
+                                        $discount_vnd = 0;
 
-                                    // Khởi tạo giá trị giảm giá
-                                    $discount_vnd = 0;
+                                        if (session('coupon')) {
+                                        $usdValue = session('coupon')['value'];
+                                        $discount_vnd = $usdValue * $exchangeRate;
+                                        }
 
-                                    if (session('coupon')) {
-                                    $usdValue = session('coupon')['value'];
-                                    $discount_vnd = $usdValue * $exchangeRate;
-                                    }
+                                        $total_amount_vnd = ($total_amount_usd * $exchangeRate) - $discount_vnd;
 
-                                    // Chuyển đổi tổng số tiền từ USD sang VND và trừ đi giá trị giảm giá
-                                    $total_amount_vnd = ($total_amount_usd * $exchangeRate) - $discount_vnd;
-                                    @endphp
+                                        // Tổng tiền sau khi thêm phí vận chuyển và trừ giá trị giảm giá
+                                        $finalTotalVND = $total_amount_vnd + $shippingFeeVND;
+                                        @endphp
 
-                                    <li class="last" id="order_total_price">Tổng cộng
-                                        <span>{{ number_format($total_amount_vnd, 0, ',', '.') }} VND</span>
-                                    </li>
+                                        <li class="last" id="order_total_price">Tổng cộng
+                                            <span>{{ number_format($finalTotalVND, 0, ',', '.') }} VND</span>
+                                        </li>
                                 </ul>
                             </div>
                         </div>
@@ -470,5 +456,6 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 @endpush

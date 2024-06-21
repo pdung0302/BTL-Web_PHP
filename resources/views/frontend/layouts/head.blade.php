@@ -5,8 +5,10 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="images/favicon.png">
 <!-- Web Font -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-
+<!-- <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet"> -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
 <!-- StyleSheet -->
 <link rel="manifest" href="/manifest.json">
 <!-- Bootstrap -->
@@ -37,25 +39,25 @@
 <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
 <style>
-    /* Multilevel dropdown */
-    .dropdown-submenu {
+/* Multilevel dropdown */
+.dropdown-submenu {
     position: relative;
-    }
+}
 
-    .dropdown-submenu>a:after {
+.dropdown-submenu>a:after {
     content: "\f0da";
     float: right;
     border: none;
     font-family: 'FontAwesome';
-    }
+}
 
-    .dropdown-submenu>.dropdown-menu {
+.dropdown-submenu>.dropdown-menu {
     top: 0;
     left: 100%;
     margin-top: 0px;
     margin-left: 0px;
-    }
+}
 
-    /*
+/*
 </style>
 @stack('styles')
