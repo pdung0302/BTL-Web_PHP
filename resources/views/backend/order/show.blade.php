@@ -155,7 +155,7 @@
                                     <td> : {{$order->address1}}, {{$order->address2}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Province</td>
+                                    <td>Country</td>
                                     <td> : {{$order->country}}</td>
                                 </tr>
                                 <tr>
