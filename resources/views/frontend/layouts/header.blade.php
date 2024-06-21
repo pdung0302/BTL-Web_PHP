@@ -27,12 +27,12 @@
                             <li><i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Theo dõi đơn hàng</a>
                             </li>
 
-                            <li><i class="ti-user"></i> <a href="{{route('admin')}}" target="_blank">Trang chủ</a></li>
+                            <li><i class="ti-user"></i> <a href="{{route('admin')}}" target="_blank">Quản lý</a></li>
                             @else
                             <li><i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Theo dõi đơn hàng</a>
                             </li>
 
-                            <li><i class="ti-user"></i> <a href="{{route('user')}}" target="_blank">Trang chủ</a></li>
+                            <li><i class="ti-user"></i> <a href="{{route('user')}}" target="_blank">Quản lý</a></li>
                             @endif
                             <li><i class="ti-power-off"></i> <a href="{{route('user.logout')}}">Đăng xuất</a></li>
 
@@ -57,8 +57,8 @@
                         @php
                         $settings=DB::table('settings')->get();
                         @endphp
-                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach"
-                                alt="logo"></a>
+                        <a href="{{route('home')}}"><img
+                                src="C:\xampp\htdocs\BTL-Web_PHP\public\storage\photos\1\logo.jpg" alt="logo"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->

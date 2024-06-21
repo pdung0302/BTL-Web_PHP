@@ -1,11 +1,4 @@
-
 ---Admin Login Details---
 
 Email   : pdung0162@gmail.com
 Password: 12345678
-
-
-
-
-
-

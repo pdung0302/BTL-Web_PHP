@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Ecommerce Laravel || Register Page')
+@section('title','SIMPLE DIMPLE || Register Page')
 
 @section('main-content')
 <!-- Breadcrumbs -->
@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="{{route('home')}}">Trang chủ<i class="ti-arrow-right">an/i></a></li>
+                        <li><a href="{{route('home')}}">Trang chủ<i class="ti-arrow-right"></i></a></li>
                         <li class="active"><a href="javascript:void(0);">Đăng kí</a></li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label><span>*</span></label>
+                                    <label>Tên đăng nhập<span>*</span></label>
                                     <input type="text" name="name" placeholder="" required="required"
                                         value="{{old('name')}}">
                                     @error('name')

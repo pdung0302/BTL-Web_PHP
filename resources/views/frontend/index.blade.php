@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Ecommerce Laravel || HOME PAGE')
+@section('title','SIMPLE DIMPLE || HOME PAGE')
 @section('main-content')
 <!-- Slider Area -->
 @if(count($banners)>0)
@@ -149,12 +149,16 @@
                                     </h3>
                                     @php
                                     $exchangeRate = 23000;
-                                    $after_discount = ($product->price - ($product->price * $product->discount) / 100);
+                                    $after_discount = ($product->price * $exchangeRate) - ($product->price *
+                                    $product->discount);
+                                    $original_price_vnd = $product->price * $exchangeRate;
                                     @endphp
                                     <div class="product-price">
-                                        <span>${{number_format($after_discount, 2)}}</span>
-                                        <del style="padding-left: 4%;">${{number_format($product->price, 2)}}</del>
+                                        <span>{{ number_format($after_discount,0) }} VND</span>
+                                        <del style="padding-left: 4%;">{{ number_format($original_price_vnd, 0) }}
+                                            VND</del>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -294,7 +298,7 @@
                                         <h4 class="title"><a
                                                 href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
                                         </h4>
-                                        <p class="price with-discount">{{number_format($product->discount,2)}}% OFF</p>
+                                        <p class="price with-discount">{{number_format($product->discount)}}% OFF</p>
                                     </div>
                                 </div>
                             </div>
