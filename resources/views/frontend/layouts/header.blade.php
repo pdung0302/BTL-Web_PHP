@@ -174,14 +174,17 @@
                                     <h4><a href="{{route('product-detail',$data->product['slug'])}}"
                                             target="_blank">{{$data->product['title']}}</a></h4>
                                     <p class="quantity">{{$data->quantity}} x - <span
-                                            class="amount">${{number_format($data->price,2)}}</span></p>
+                                            class="amount">{{ number_format($data->price * 23000, 0, ',', '.') }} VND
+                                        </span></p>
                                 </li>
                                 @endforeach
                             </ul>
                             <div class="bottom">
                                 <div class="total">
                                     <span>Total</span>
-                                    <span class="total-amount">${{number_format(Helper::totalCartPrice(),2)}}</span>
+                                    <<span class="total-amount">
+                                        {{ number_format(Helper::totalCartPrice() * 23000, 0, ',', '.') }} VND</span>
+
                                 </div>
                                 <a href="{{route('checkout')}}" class="btn animate">Thanh toán</a>
                             </div>

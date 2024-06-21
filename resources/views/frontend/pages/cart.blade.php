@@ -51,7 +51,7 @@
                                     <p class="product-des">{!!($cart['summary']) !!}</p>
                                 </td>
                                 @php
-                                $exchange_rate = 23000; // Replace with the current exchange rate
+                                $exchange_rate = 23000;
                                 $amount_vnd = $cart['amount'] * $exchange_rate;
                                 @endphp
                                 <td class="price" data-title="Price"><span>{{number_format($amount_vnd,0)}} VND</span>
